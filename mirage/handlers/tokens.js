@@ -1,6 +1,8 @@
-import { debug, inspect } from '@ember/debug';
+import { debug } from '@ember/debug';
 import Response from 'ember-cli-mirage/response';
 import Object from '@ember/object';
+import { assign } from '@ember/polyfills';
+// import Ember from 'ember';
 
 // function createFakeToken(obj) {
 //   return 'a.' + window.btoa(JSON.stringify(obj)) + '.b';
@@ -28,6 +30,12 @@ export default function(db, request) {
     let object = Object.create(decodeURL(request.requestBody))
     
     let response_body = {};
+    let resp = new Response({
+                'Cache-Control':'no-store',
+                'Pragma': 'no-cache', 
+                'Content-Type': 'application/json;charset=UTF-8'
+                
+            });
     
     if (object.password == 'password' && object.username == 'username'){
         response_body = {
@@ -36,39 +44,14 @@ export default function(db, request) {
            "expires_in":2000,
            "refresh_token":"tGzv3JOkF0XG5Qx2TlKWIA"
         };
-        return new Response(
-            200, 
-            {
-                'Cache-Control':'no-store',
-                'Pragma': 'no-cache', 
-                'Content-Type': 'application/json;charset=UTF-8'
-                
-            },
-            response_body
-        );
+        assign(resp,{code: 200, data: response_body});
     }else{
         response_body = {
              "error":"invalid_request"
         };
-        return new Response(
-            400, 
-            {
-                'Cache-Control':'no-store',
-                'Pragma': 'no-cache', 
-                'Content-Type': 'application/json;charset=UTF-8'
-                
-            },
-            response_body
-        );
+        assign(resp,{code: 400, data: response_body});
     }
+    return resp;
     
-    
-    
-    // if request.requestBody
-    return new Response(
-        200, 
-    {'Cache-Control':'no-store','Pragma': 'no-cache', 'Content-Type': 'application/json;charset=UTF-8'},
-      response_body
-    );
     
 }
