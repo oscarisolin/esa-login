@@ -1,1 +1,15 @@
-{{login-dialog}}
+{{#bs-button active=notCollapsed onClick=(action "toggle")}}
+    {{#if collapsed}}
+        Menu
+    {{else}}
+        Hide
+    {{/if}}
+{{/bs-button}}
+
+<hr>
+
+{{#bs-collapse collapsed=collapsed}}
+    <div class="well">
+        {{login-dialog}}
+    </div>
+{{/bs-collapse}}

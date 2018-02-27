@@ -1,8 +1,6 @@
 import { module, test } from 'qunit';
 import hbs from 'htmlbars-inline-precompile';
 import Service from '@ember/service';
-// import { run } from '@ember/runloop';
-// import { set } from '@ember/object'; 
 import { click, fillIn, render, find } from '@ember/test-helpers';
 import { setupRenderingTest } from 'ember-qunit';
 
