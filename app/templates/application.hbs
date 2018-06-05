@@ -1,4 +1,4 @@
-{{#bs-button active=notCollapsed onClick=(action "toggle")}}
+{{#bs-button active=notCollapsed onClick=(action "toggle") data-test-toggle-menu="true"}}
     {{#if collapsed}}
         Menu
     {{else}}
@@ -10,7 +10,7 @@
 
 {{#bs-collapse collapsed=collapsed}}
     <div class="well">
-        {{login-dialog}}
+        {{login-dialog afterLogin=(action "afterLogin")}}
     </div>
 {{/bs-collapse}}
 

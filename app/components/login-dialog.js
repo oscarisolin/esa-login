@@ -10,6 +10,8 @@ export default Component.extend({
     password: "",
     message: "please fill in your credentials",
     e: "",
+    afterLogin: null,
+    
     
     actions: {
         send(){
@@ -18,6 +20,9 @@ export default Component.extend({
             .then(()=>{
                 this.set('message',"please fill in your credentials");
                 this.set('e',"");
+                if (this.afterLogin){
+                    this.afterLogin();
+                }
             }).catch((e)=> {
                 this.set('e', e);
                 this.set('message',"Wrong credentials. Please try again.");

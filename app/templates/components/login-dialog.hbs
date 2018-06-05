@@ -1,13 +1,13 @@
 {{#if (not session.isAuthenticated)}}
 <form {{action "send" on="submit"}}>
-    {{input id="loginDialog_username" class="form-control" value=username placeholder="insert your username" type="text"}}
-    {{input id="loginDialog_password"  class="form-control" value=password placeholder="insert your password" type="password"}}
+    {{input data-test-login-username=true class="form-control" value=username placeholder="insert your username" type="text"}}
+    {{input data-test-login-password=true  class="form-control" value=password placeholder="insert your password" type="password"}}
     
         <div class="alert {{if e 'alert-warning'}}">{{message}}</div>
     
     
-    <button class="btn btn-primary" type="submit">Login</button>
+    <button data-test-send-login=true class="btn btn-primary" type="submit">Login</button>
 </form>
 {{else}}
-    <button {{action "deauthenticate"}} class="btn btn-secondary" type="submit">Logout</button>
+    <button data-test-logout=true {{action "deauthenticate"}} class="btn btn-secondary" type="submit">Logout</button>
 {{/if}}

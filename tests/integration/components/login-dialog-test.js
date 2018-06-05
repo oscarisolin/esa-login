@@ -37,7 +37,7 @@ module('login-dialog', 'Integration | Component | login dialog', function(hooks)
     
     await render(hbs`{{login-dialog}}`);
   
-    assert.equal(find('button').innerHTML, 'Login');
+    assert.equal(find(`[data-test-send-login]`).innerText, 'Login');
   
   });
   
@@ -45,26 +45,26 @@ module('login-dialog', 'Integration | Component | login dialog', function(hooks)
     assert.expect(2);
     await render(hbs`{{login-dialog}}`);
     
-    await fillIn('#loginDialog_username', 'username');
-    await fillIn('#loginDialog_password', 'password');
-    await click('.btn.btn-primary');
+    await fillIn('[data-test-login-username]', 'username');
+    await fillIn('[data-test-login-password]', 'password');
+    await click('[data-test-send-login]');
     
-    assert.equal(find('.btn.btn-secondary').innerHTML,"Logout","Logout");
+    assert.equal(find('[data-test-logout]').innerText,"Logout","Logout");
       
-    await click('.btn.btn-secondary');
+    await click('[data-test-logout]');
     
-    assert.equal(find('.btn.btn-primary').innerHTML,"Login","Login");
+    assert.equal(find(`[data-test-send-login]`).innerText,"Login","Login");
     
     
   });
 
   test('wrong credentials', async function(assert){
     await render(hbs`{{login-dialog}}`);
-    await fillIn('#loginDialog_username', 'wrong@tests.de');
-    await fillIn('#loginDialog_password', 'some');
-    await click('.btn.btn-primary');
+    await fillIn('[data-test-login-username]', 'wrong@tests.de');
+    await fillIn('[data-test-login-password]', 'some');
+    await click('[data-test-send-login]');
   
-    assert.equal(find('.btn.btn-primary').innerHTML,"Login","Login");
+    assert.equal(find(`[data-test-send-login]`).innerText,"Login","Login");
     assert.equal(find('.alert.alert-warning').innerHTML,"Wrong credentials. Please try again.","Error message");
   
   });

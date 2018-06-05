@@ -27,4 +27,5 @@ export default function() {
   */
   this.namespace = '/api';
   this.post('/tok',tokenhandler);
+  this.get('users/:id');
 }

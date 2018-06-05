@@ -6,6 +6,9 @@ export default Controller.extend({
     actions: {
         toggle(){
             this.toggleProperty('collapsed');
+        },
+        afterLogin(){
+            this.transitionToRoute('/auth/profile');
         }
     }
 });
