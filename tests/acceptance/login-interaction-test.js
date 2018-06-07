@@ -8,9 +8,25 @@ module('Acceptance | login interaction', function(hooks) {
   
 
   test('logging in and checking forwarding routes and name display', async function(assert) {
+    
+    assert.expect(6);
+    
     server.create('user',{name: "oscar", role:"admin"});
     
-    assert.expect(4);
+    server.post('/tok',(db, request) => {
+      let params = request.requestBody;
+      assert.deepEqual(params, 'grant_type=password&username=username&password=password');
+      // the validation in ESA-password-grant looks for access_token key
+      return {access_token: 'testtoken'};
+    })
+    
+     server.get('/users/1',(db, request) => {
+      let params = request.requestHeaders
+      assert.equal(params.Authorization, 'Bearer testtoken')
+      return db.users.find(1)
+      
+    })
+    
     
     
     await visit('/');
@@ -31,6 +47,8 @@ module('Acceptance | login interaction', function(hooks) {
     fillIn('[data-test-login-password]','password');
     
     await click('[data-test-send-login]');
+    
+    
     
     assert.equal(find('p').innerText,"oscar", "show user name");
     
