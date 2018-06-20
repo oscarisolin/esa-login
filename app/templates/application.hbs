@@ -1,17 +1,26 @@
-{{#bs-button active=notCollapsed onClick=(action "toggle") data-test-toggle-menu="true"}}
-    {{#if collapsed}}
-        Menu
-    {{else}}
-        Hide
-    {{/if}}
-{{/bs-button}}
 
-<hr>
+<div class="d-flex p-2 bg-secondary text-white w-100">
+    {{#bs-button active=notCollapsed onClick=(action "toggle") data-test-toggle-menu="true"}}
+        {{#if collapsed}}
+            Menu
+        {{else}}
+            Hide
+        {{/if}}
+    {{/bs-button}}    
+    
+</div>
 
-{{#bs-collapse collapsed=collapsed}}
+
+{{!--<hr>--}}
+
+{{#bs-collapse class="bg-secondary text-white" collapsed=collapsed}}
     <div class="well">
         {{login-dialog afterLogin=(action "afterLogin")}}
     </div>
 {{/bs-collapse}}
+
+{{#leaflet-map lat=lat lng=lng zoom=zoom zoomControl=false}}
+  {{tile-layer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png"}}
+{{/leaflet-map}}
 
 {{outlet}}

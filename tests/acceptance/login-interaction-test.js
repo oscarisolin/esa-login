@@ -15,14 +15,19 @@ module('Acceptance | login interaction', function(hooks) {
     
     server.post('/tok',(db, request) => {
       let params = request.requestBody;
-      assert.deepEqual(params, 'grant_type=password&username=username&password=password');
+      assert.deepEqual(
+        params, 
+        'grant_type=password&username=username&password=password', 
+        "check if credetials were included in oauth2 format"
+      );
       // the validation in ESA-password-grant looks for access_token key
       return {access_token: 'testtoken'};
     })
     
      server.get('/users/1',(db, request) => {
       let params = request.requestHeaders
-      assert.equal(params.Authorization, 'Bearer testtoken')
+      assert.equal(params.Authorization, 'Bearer testtoken', 
+        "see if authorizer added token header")
       return db.users.find(1)
       
     })
@@ -31,15 +36,15 @@ module('Acceptance | login interaction', function(hooks) {
     
     await visit('/');
 
-    assert.equal(currentURL(), '/');
+    assert.equal(currentURL(), '/', 'check if URL is /');
     
     await click('[data-test-toggle-menu]');
     
-    assert.ok(find('.collapse.in'))
+    assert.ok(find('.collapse.show'),"see if menu was opened")
     
     await click('[data-test-toggle-menu]');
     
-    assert.ok(!(find('.collapse.in')))
+    assert.ok(!(find('.collapse.show')), "check if menu was closed")
     
     await click('[data-test-toggle-menu]');
     
