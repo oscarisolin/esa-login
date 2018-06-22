@@ -25,6 +25,7 @@ export default function() {
 
     http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
   */
+  this.passthrough('https://flask-fuhrman.c9users.io/');
   this.namespace = '/api';
   this.post('/tok',tokenhandler);
   this.get('users/:id');

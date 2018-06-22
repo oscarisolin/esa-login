@@ -9,6 +9,7 @@ module('Acceptance | map loaded', function(hooks) {
     await visit('/');
 
     
-    assert.ok(find('.leaflet-tile.leaflet-tile-loaded')) 
+    assert.ok(find('.leaflet-tile.leaflet-tile-loaded'), 
+    "check if elements with tile-loaded class exist") 
   });
 });
