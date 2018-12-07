@@ -9,6 +9,10 @@ module.exports = function(environment) {
     'ember-simple-auth': {
       authenticationRoute: '/'
     },
+    'ember-cli-pact' : {
+      providerName: 'my-api',
+      consumerName: 'ember-simple-auth'
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

@@ -1,0 +1,52 @@
+{
+  "consumer": {
+    "name": "ember-simple-auth"
+  },
+  "interactions": [
+    {
+      "description": "locating a person by ID",
+      "providerStates": [
+        {
+          "name": "an admin exists"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": "application/vnd.api+json",
+          "Authorization": "Bearer 2YotnFZFEjr1zCsicMWpAA",
+          "X-Requested-With": "XMLHttpRequest"
+        },
+        "method": "GET",
+        "path": "/api/users/1"
+      },
+      "response": {
+        "body": {
+          "data": {
+            "attributes": {
+              "name": "oscar",
+              "role": "admin"
+            },
+            "id": "1",
+            "type": "users"
+          }
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "matchingRules": {
+          "body": {
+          }
+        },
+        "status": 200
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    }
+  },
+  "provider": {
+    "name": "my-api3"
+  }
+}

@@ -1,4 +1,6 @@
+import { PactEnabled } from 'ember-cli-pact/mock-provider/mirage';
 import { JSONAPISerializer } from 'ember-cli-mirage';
 
-export default JSONAPISerializer.extend({
+export default PactEnabled(JSONAPISerializer).extend({
+
 });

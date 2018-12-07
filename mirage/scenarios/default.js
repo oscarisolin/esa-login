@@ -7,4 +7,5 @@ export default function(server) {
 
   // server.createList('post', 10);
   server.create('user', {"name": "oscar", "role":"bestsermann"});
+  server.create('person', {"name": "oscar"});
 }
