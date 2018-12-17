@@ -1,6 +1,6 @@
 {
   "consumer": {
-    "name": "ember-simple-auth"
+    "name": "chmap_frontend"
   },
   "interactions": [
     {
@@ -47,6 +47,6 @@
     }
   },
   "provider": {
-    "name": "my-api3"
+    "name": "chmap_backend"
   }
 }

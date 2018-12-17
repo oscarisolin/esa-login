@@ -10,7 +10,7 @@ module('Pact | People', function(hooks) {
   setupPact(hooks, {
     // Specify the names of the provider and consumer whose interactions are being set up.
     // Normally these values would be defaulted from global configuration for your app.
-    providerName: 'my-api3'
+    // providerName: 'my-api3'
   });
 
   test('locating a person by ID', async function(assert) {

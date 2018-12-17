@@ -10,8 +10,8 @@ module.exports = function(environment) {
       authenticationRoute: '/'
     },
     'ember-cli-pact' : {
-      providerName: 'my-api',
-      consumerName: 'ember-simple-auth'
+      providerName: 'chmap_backend',
+      consumerName: 'chmap_frontend'
     },
     EmberENV: {
       FEATURES: {
